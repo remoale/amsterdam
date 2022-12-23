@@ -8,7 +8,7 @@ st.subheader("Listings")
 
 # Read dataframe
 dataframe = pd.read_csv(
-    "clean-listings/WK1_Airbnb_Amsterdam_listings_proj_solution.csv",
+    "map/WK1_Airbnb_Amsterdam_listings_proj_solution.csv",
     names=[
         "Airbnb Listing ID",
         "Price",
