@@ -1,6 +1,10 @@
-# Airbnb Amsterdam
-Two interactive apps that process Airbnb Amsterdam listings.  
-### Map
-[amsterdam-map.streamlit.app](https://amsterdam-map.streamlit.app/): Dam Square surrounding places.  
-### Filter
-[amsterdam-filter.streamlit.app](https://amsterdam-filter.streamlit.app/): A data frame to filter listings.
+# Airbnb Amsterdam, Netherlands
+
+[Map](https://amsterdam-map.streamlit.app/)
+---
+A map of Amsterdam showcasing more than 6000 Airbnb listings data points with pricing, distance, and coordinates.  
+Dam Square is the starting point.
+
+[Filter](https://amsterdam-filter.streamlit.app/)
+---
+A table to filter a data frame with house-specific attributes from over 2000 hosting sources.
