@@ -2,8 +2,7 @@
 
 [Map](https://amsterdam-map.streamlit.app/)
 ---
-A map of Amsterdam showcasing more than 6000 Airbnb listings data points with pricing, distance, and coordinates.  
-Dam Square is the starting point.
+A map of Amsterdam showcasing more than 6000 Airbnb listings data points with pricing, distance, and coordinates. Dam Square is the starting point.
 
 [Filter](https://amsterdam-filter.streamlit.app/)
 ---
