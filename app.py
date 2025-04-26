@@ -63,6 +63,11 @@ st.plotly_chart(fig, use_container_width=True)
 
 # Display dataframe
 st.subheader("Listings")
+
+# Display text
+st.write("900+ listings under €100 per night.")
+
+# Display dataframe
 st.dataframe(dataframe)
 
 # Filter dataframe
@@ -140,6 +145,9 @@ def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
                     df = df[df[column].str.contains(user_text_input)]
 
     return df
+
+# Display text
+st.write("2000+ hosting sources with house-specific attributes.")
 
 # Display filtered dataframe
 df = pd.read_csv(

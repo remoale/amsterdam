@@ -1,6 +1,6 @@
 # Airbnb Amsterdam Explorer
 
-A streamlit web app for exploring Airbnb listings in Amsterdam, Netherlands. This dashboard allows to visualize and filter over 6,000 Airbnb listings with detailed information about pricing, location, and distance from key landmarks.
+A streamlit web app for exploring Airbnb listings in Amsterdam, Netherlands. This dashboard allows to visualize and filter over 900 Airbnb listings with detailed information about pricing, location, and distance from key landmarks.
 
 ![Amsterdam Airbnb Map](resources/map.png)
 
@@ -54,7 +54,7 @@ Use the interactive map to explore listings:
 The application uses two main data sources:
 - `WK1_Airbnb_Amsterdam_listings_proj_solution.csv`: Contains basic listing information with coordinates
   - Includes Airbnb Listing ID, Price, Latitude, Longitude, Distance from Dam Square, and Location type
-  - Over 6,000 listings with prices under €100 per night
+  - Over 6,000 listings, with 900+ under €100 per night
   - Coordinates centered around Dam Square (52.3731° N, 4.8939° E)
   
 - `WK2_Airbnb_Amsterdam_listings_proj_solution.csv`: Contains detailed listing attributes
