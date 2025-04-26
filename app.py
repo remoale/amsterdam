@@ -1,4 +1,5 @@
 import pandas as pd
+import plotly.express as px
 import streamlit as st
 from pandas.api.types import (
     is_categorical_dtype,
@@ -7,15 +8,64 @@ from pandas.api.types import (
     is_object_dtype
 )
 
-st.title("Filter Airbnb Listings")
+# Display title
+st.title("Airbnb Amsterdam")
 
-st.write(
-    """This app is based on this blog [here](https://blog.streamlit.io/auto-generate-a-dataframe-filtering-ui-in-streamlit-with-filter_dataframe/). 
-    Can you think of ways to extend it with visuals?
-    """
+# Read dataframe
+dataframe = pd.read_csv(
+    "data/WK1_Airbnb_Amsterdam_listings_proj_solution.csv",
+    names=[
+        "Airbnb Listing ID",
+        "Price",
+        "Latitude",
+        "Longitude",
+        "Meters from chosen location",
+        "Location",
+    ],
 )
 
+# We have a limited budget, therefore we would like to exclude
+# listings with a price above 100 pounds per night
+dataframe = dataframe[dataframe["Price"] <= 100]
 
+# Display as integer
+dataframe["Airbnb Listing ID"] = dataframe["Airbnb Listing ID"].astype(int)
+# Round of values
+dataframe["Price"] = "€ " + dataframe["Price"].round(2).astype(str)
+# Rename the number to a string
+dataframe["Location"] = dataframe["Location"].replace(
+    {1.0: "To visit", 0.0: "Airbnb listing"}
+)
+
+# Display map
+st.subheader("Explore")
+
+# Display text
+st.write("Dam Square (52.3731° N, 4.8939° E) is the historic heart of Amsterdam, Netherlands and serves as the central reference point on the map.")
+
+# Create the plotly express figure
+fig = px.scatter_map(
+    dataframe,
+    lat="Latitude",
+    lon="Longitude",
+    color="Location",
+    zoom=11,
+    height=500,
+    width=800,
+    hover_name="Price",
+    hover_data=["Meters from chosen location", "Location"],
+    labels={"color": "Locations"},
+)
+fig.update_geos(center=dict(lat=dataframe.iloc[0]["Latitude"], lon=dataframe.iloc[0]["Longitude"]))
+
+# Show the figure
+st.plotly_chart(fig, use_container_width=True)
+
+# Display dataframe
+st.subheader("Listings")
+st.dataframe(dataframe)
+
+# Filter dataframe
 def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     """
     Adds a UI on top of a dataframe to let viewers filter columns
@@ -35,7 +85,8 @@ def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     for col in df.columns:
         if is_object_dtype(df[col]):
             try:
-                df[col] = pd.to_datetime(df[col])
+                # Specify format parameter to avoid the warning
+                df[col] = pd.to_datetime(df[col], format='mixed')
             except Exception:
                 pass
 
@@ -90,8 +141,8 @@ def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-
+# Display filtered dataframe
 df = pd.read_csv(
-    "filter/WK2_Airbnb_Amsterdam_listings_proj_solution.csv", index_col=0
+    "data/WK2_Airbnb_Amsterdam_listings_proj_solution.csv", index_col=0
 )
 st.dataframe(filter_dataframe(df))
